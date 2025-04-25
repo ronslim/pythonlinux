@@ -9,6 +9,7 @@ trigger:
 pool:
   name: rhelpool
 
+steps:
 - task: CmdLine@2
   inputs:
     script: 'git pull'
