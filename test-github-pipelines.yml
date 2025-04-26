@@ -3,6 +3,13 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
+variables:
+ - name: from_email_address
+   value: MS_ksDev1@test-dnvo4d998erg5r86.mlsender.net
+
+ - name: to_email_address
+   value: ron_lim_az500_ms@outlook.com
+
 trigger:
 - main
 
@@ -11,11 +18,23 @@ pool:
 
 steps:
 - task: CmdLine@2
+  displayName: "Sync Changes to linux"
   inputs:
     script: 'git pull'
     workingDirectory: '/root/gitrepos/pythonlinux/pythonlinux'
 
 - task: CmdLine@2
+  displayName: "Run Python Script"
   inputs:
-    script: 'sudo python /root/gitrepos/pythonlinux/pythonlinux/main.py > /root/pythonlogs/main.py.`date +"%Y-%m-%d"`.log &'
+    script: 'sudo python /root/gitrepos/pythonlinux/pythonlinux/main.py > /root/pythonlogs/main.py.log &'
+
+- task: CmdLine@2
+  displayName: "Send Python Output Email"
+  inputs:
+    script: 'echo -e "Python Output:\n" "$(cat /root/pythonlogs/main.py.log)" | mail -s "Python output notification `date +"%Y-%m-%d"`" $(to_email_address) -r $from_email_address)'
+
+- task: CmdLine@2
+  displayName: "Rename logs with date and time"
+  inputs:
+    script: 'mv /root/pythonlogs/main.py.log /root/pythonlogs/main.py.`date +"%Y-%m-%d"`.log'
 
