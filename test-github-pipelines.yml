@@ -15,7 +15,7 @@ steps:
     script: 'git pull'
     workingDirectory: '/root/gitrepos/pythonlinux/pythonlinux'
 
-- task: PythonScript@0
+- task: CmdLine@2
   inputs:
-    scriptSource: 'filePath'
-    scriptPath: '/root/gitrepos/pythonlinux/pythonlinux/main.py'
+    script: 'sudo python /root/gitrepos/pythonlinux/pythonlinux/main.py > /root/pythonlogs/main.py.`date +"%Y-%m-%d"`.log &'
+
