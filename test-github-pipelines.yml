@@ -36,5 +36,5 @@ steps:
 - task: CmdLine@2
   displayName: "Rename logs with date and time"
   inputs:
-    script: 'mv /root/pythonlogs/main.py.log /root/pythonlogs/main.py.`date +"%Y-%m-%d"`.log'
+    script: 'mv /root/pythonlogs/main.py.log /root/pythonlogs/main.py.`date +"%Y-%m-%d-%I-%M-%p"`.log'
 
