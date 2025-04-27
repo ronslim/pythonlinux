@@ -37,12 +37,16 @@ steps:
     script: 'sudo python /root/gitrepos/pythonlinux/pythonlinux/main.py > /root/pythonlogs/main.py.log &'
 
 - task: CmdLine@2
-  displayName: "Send Python Output Email"
+  displayName: "Send Python with attached output log and image Email"
   inputs:
-    script: 'echo -e "Python output in the attachment\nThanks,\nRonald Stewart Lim" | mail -s "Python output notification `date +"%Y-%m-%d"`" -a /root/pythonlogs/main.py.log -r $(from_email_address) $(to_email_address)'
+    script: 'echo -e "Python output in the attachment\nThanks,\nRonald Stewart Lim" | mail -s "Python output notification `date +"%Y-%m-%d"`" -a /root/pythonimages/plot_image.png -a /root/pythonlogs/main.py.log -r $(from_email_address) $(to_email_address)'
 
 - task: CmdLine@2
   displayName: "Rename logs with date and time"
   inputs:
     script: 'mv /root/pythonlogs/main.py.log /root/pythonlogs/main.py.`date +"%Y-%m-%d-%I-%M-%p"`.log'
 
+- task: CmdLine@2
+  displayName: "Rename image with date and time"
+  inputs:
+    script: 'mv /root/pythonimages/plot_image.png /root/pythonlogs/plot_image_`date +"%Y-%m-%d-%I-%M-%p"`.png'
