@@ -1,21 +1,8 @@
-# importing the required module
-import matplotlib.pyplot as plt
+import plotext as plt
 
-# x axis values
-x = [1,2,3]
-# corresponding y axis values
-y = [2,4,1]
+pizzas = ["Sausage", "Pepperoni", "Mushrooms", "Cheese", "Chicken", "Beef"]
+percentages = [14, 36, 11, 8, 7, 4]
 
-# plotting the points 
-plt.plot(x, y)
-
-# naming the x axis
-plt.xlabel('x - axis')
-# naming the y axis
-plt.ylabel('y - axis')
-
-# giving a title to my graph
-plt.title('My first graph!')
-
-# function to show the plot
+plt.bar(pizzas, percentages)
+plt.title("Most Favored Pizzas in the World")
 plt.show()
