@@ -39,7 +39,7 @@ steps:
 - task: CmdLine@2
   displayName: "Send Python with attached output log and image Email"
   inputs:
-    script: 'echo -e "Python output in the attachment\nThanks,\nRonald Stewart Lim": uuencode /root/pythonimages/plot_image.png plot_image.png | mailx -s "Python output notification `date +"%Y-%m-%d"`" -a /root/pythonlogs/main.py.log -r $(from_email_address) $(to_email_address)'
+    script: 'echo -e "Python output in the attachment\nThanks,\nRonald Stewart Lim": uuencode /root/pythonimages/plot_image.png /root/pythonimages/plot_image.png | mailx -s "Python output notification `date +"%Y-%m-%d"`" -a /root/pythonlogs/main.py.log -r $(from_email_address) $(to_email_address)'
 
 - task: CmdLine@2
   displayName: "Rename logs with date and time"
@@ -49,4 +49,4 @@ steps:
 - task: CmdLine@2
   displayName: "Rename image with date and time"
   inputs:
-    script: 'mv /root/pythonimages/plot_image.png /root/pythonlogs/plot_image_`date +"%Y-%m-%d-%I-%M-%p"`.png'
+    script: 'mv /root/pythonimages/plot_image.png /root/pythonimages/plot_image_`date +"%Y-%m-%d-%I-%M-%p"`.png'
