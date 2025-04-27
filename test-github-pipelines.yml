@@ -31,7 +31,7 @@ steps:
 - task: CmdLine@2
   displayName: "Send Python Output Email"
   inputs:
-    script: 'echo -e "Python output in the attachment\nThanks,\nRonald Stewart Lim" | mail -s "Python output notification `date +"%Y-%m-%d"`" -a main.py.log -r $(from_email_address) $(to_email_address)'
+    script: 'echo -e "Python output in the attachment\nThanks,\nRonald Stewart Lim" | mail -s "Python output notification `date +"%Y-%m-%d"`" -a /root/pythonlogs/main.py.log -r $(from_email_address) $(to_email_address)'
 
 - task: CmdLine@2
   displayName: "Rename logs with date and time"
