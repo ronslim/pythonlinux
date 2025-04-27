@@ -11,7 +11,15 @@ variables:
    value: ron_lim_az500_ms@outlook.com
 
 trigger:
-- main
+  branches:
+    include:
+    - main
+  paths:
+    include:
+    - main.py
+    exclude:
+    - README.md
+    - test-github-pipelines.yml
 
 pool:
   name: rhelpool
